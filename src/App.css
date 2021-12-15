@@ -1,38 +1,344 @@
-.App {
-  text-align: center;
+body {
+  background: #222952 !important;
+  color: #ffffff !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.MuiCardMedia-media {
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.MuiCardMedia-img {
+  object-fit: cover;
+}
+
+.MuiTypography-gutterBottom {
+  margin-bottom: 0.35em;
+  font-size: 15px;
+  height: 20px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.poster-title {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.00838em !important;
+}
+
+.film-container {
+  width: 92%;
+  margin: auto;
+}
+
+.search-bar {
+  width: 30%;
+  margin-left: 67.8%;
+}
+
+#outlined {
+  height: 30px;
+  width: 345px;
+  background: #ffffff;
+  padding-left: 20px;
+}
+
+.MuiButton-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .film-container {
+    width: 60%;
+    margin: auto;
+  } 
+
+  .search-bar {
+    width: 90%;
+    margin-left: 3.8%;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 }
+  
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+  .film-container {
+    width: 101%;
+    margin: auto;
+  } 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .search-bar {
+    width: 30%;
+    margin-left: 67.8%;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
-  to {
-    transform: rotate(360deg);
+}  
+  
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width : 320px) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
   }
-}
+  
+  /* iPads (portrait and landscape) ----------- */
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPads (landscape) ----------- */
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 75%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPads (portrait) ----------- */
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* Desktops and laptops ----------- */
+  @media only screen  and (min-width : 1224px) {
+    .film-container {
+      width: 80%;
+      margin: auto;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Large screens ----------- */
+  @media only screen  and (min-width : 1824px) {
+    .film-container {
+      width: 96%;
+      margin: auto;
+    }
+  }
+  
+  /* iPhone 4 ----------- */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+  }
+  
+  /* iPhone 5 ----------- */
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPhone 6, 7, 8 ----------- */
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPhone 6+, 7+, 8+ ----------- */
+  @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 74%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPhone X ----------- */
+  @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* iPhone XS Max, XR ----------- */
+  @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  /* Samsung Galaxy S5 ----------- */
+  @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 67%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 48%;
+      margin-left: 2%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .film-container {
+      width: 60%;
+      margin: auto;
+    } 
+
+    .search-bar {
+      width: 90%;
+      margin-left: 3.8%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  }
