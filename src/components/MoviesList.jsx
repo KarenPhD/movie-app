@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { IMAGE_URL } from '../helpers/api';
+import { useDispatch, useSelector } from "react-redux";
+import { loadMoviesAsync } from '../redux/reducers/thunks';
 
 const useStyles = makeStyles({
   root: {
@@ -17,17 +19,28 @@ const useStyles = makeStyles({
   },
 });
 
-const MoviesList = ({movies, isLoading, isError}) => {
+const MoviesList = () => {
 
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+    const films = useSelector(state => state.movies.movies);
+    const isLoading = useSelector(state => state.movies.isLoading);
+    const errorMessage = useSelector(state => state.movies.errorMessage);
+
+    const movies = JSON.stringify(films);
+
+    useEffect(() => {
+		dispatch(loadMoviesAsync());
+	}, [dispatch]);
     
     return (
         <div>
-            {isError && <div>Something went wrong ...</div>}
+            {errorMessage && <h2>{errorMessage}</h2>}
 
             {isLoading ? (
                 <div>Loading ...</div>
-            ) : movies.length > 0 && movies.map((movie) => 
+            ) : movies.length > 0 && JSON.parse(movies).map((movie) => 
                 <Card className={classes.root} key={movie.id}>
                     <CardActionArea>
                         <CardMedia
