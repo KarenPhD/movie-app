@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +9,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { IMAGE_URL } from '../helpers/api';
 import { TextField } from '@material-ui/core';
+import { useDispatch, useSelector } from "react-redux";
+import { loadMoviesAsync } from '../redux/reducers/thunks';
+import { Link } from "react-router-dom";
+
+const MoviesList = lazy(() => import('./MoviesList'));
 
 const useStyles = makeStyles({
   root: {
@@ -18,52 +23,71 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchBox = ({data}) => {
+const SearchBox = () => {
 
     const classes = useStyles();  
 
     const [films, setFilms] = useState([])
 
-    function SearchFunction(query) {
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.movies.movies);
+    const errorMessage = useSelector(state => state.movies.errorMessage);
 
-        //const films = data.filter(fm => fm.title.replace(/ /g,'').toLowerCase().includes(value.toLowerCase()))
-       
+    useEffect(() => {
+        dispatch(loadMoviesAsync());
+    }, [dispatch]);
+
+    function SearchFunction(query) {
         const films = data.filter(flm => {
-            if (query === "") {
+            if (query === "" || query.length === 0) {
                 return flm;
-            } else if (flm.title.toLowerCase().includes(query.toLowerCase())) {
+            } else if (query.length > 2 && flm.title.toLowerCase().includes(query.toLowerCase())) {
                 return flm;
             }
         });
 
-        setFilms(films)
+        setFilms(films);
     }
+
+    const movies = JSON.stringify(films);
     
     return (
         <>
             <div className='search-bar'>
                 <form noValidate autoComplete="off">
-                    <TextField id="outlined" placeholder="Search" onChange={e => SearchFunction(e.target.value)} />
+                    <TextField id="outlined"
+                        placeholder="Search" 
+                        type="text"
+                        onChange={e => SearchFunction(e.target.value)}
+                    />
                 </form>
             </div>
 
-            {films.length > 0 && films.map((film) => 
-                <Card className={classes.root} key={film.id}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt={film.title}
-                            height="160"
-                            width="220"
-                            image={IMAGE_URL + film.poster_path}
-                            title={film.title}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom className='poster-title'>
-                                {film.title}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
+            {errorMessage && <h2 style={{marginLeft: '1%'}}>{errorMessage}</h2>}
+
+            {JSON.parse(movies).length === 0 || JSON.parse(movies).length === '' ? 
+            <Suspense fallback={<h3>Loading MoviesList Component...</h3>}>
+                <MoviesList />
+            </Suspense> :
+            JSON.parse(movies).length > 0 && JSON.parse(movies).map((movie) => 
+                <Card className={classes.root} key={movie.id}>
+                    <Link to={"/description"} state={{title: movie.title, overview: movie.overview, poster: movie.poster_path}}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt={movie.title}
+                                height="160"
+                                width="220"
+                                image={IMAGE_URL + movie.poster_path}
+                                title={movie.title}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom className='poster-title'>
+                                    {movie.title}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Link>
                     <CardActions>
                         <Button size="small" color="primary" className='fav-btn'>
                             Add To Favourites

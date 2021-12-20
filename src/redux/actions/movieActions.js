@@ -14,14 +14,8 @@ const moviesLoadError = (errorMessage) => ({
 	payload: errorMessage,
 });
 
-const searchedMovies = (movies) => ({
-	type: movieActionTypes.MOVIE_SEARCH,
-	payload: movies,
-});
-
 export default {
 	moviesLoadStart,
 	moviesLoadSuccess,
 	moviesLoadError,
-    searchedMovies
 };

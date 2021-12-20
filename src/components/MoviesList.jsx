@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { IMAGE_URL } from '../helpers/api';
 import { useDispatch, useSelector } from "react-redux";
 import { loadMoviesAsync } from '../redux/reducers/thunks';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -19,13 +20,12 @@ const useStyles = makeStyles({
   },
 });
 
-const MoviesList = () => {
+const MoviesList = ({movie}) => {
 
     const classes = useStyles();
 
     const dispatch = useDispatch();
     const films = useSelector(state => state.movies.movies);
-    const isLoading = useSelector(state => state.movies.isLoading);
     const errorMessage = useSelector(state => state.movies.errorMessage);
 
     const movies = JSON.stringify(films);
@@ -36,27 +36,27 @@ const MoviesList = () => {
     
     return (
         <div>
-            {errorMessage && <h2>{errorMessage}</h2>}
+            {errorMessage && <h2 style={{marginLeft: '1%'}}>{errorMessage}</h2>}
 
-            {isLoading ? (
-                <div>Loading ...</div>
-            ) : movies.length > 0 && JSON.parse(movies).map((movie) => 
+            {JSON.parse(movies).length > 0 && JSON.parse(movies).map((movie) => 
                 <Card className={classes.root} key={movie.id}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt={movie.title}
-                            height="160"
-                            width="220"
-                            image={IMAGE_URL + movie.poster_path}
-                            title={movie.title}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom className='poster-title'>
-                                {movie.title}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
+                    <Link to="/description" state={{title: movie.title, overview: movie.overview, poster: movie.poster_path}}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt={movie.title}
+                                height="160"
+                                width="220"
+                                image={IMAGE_URL + movie.poster_path}
+                                title={movie.title}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom className='poster-title'>
+                                    {movie.title}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Link>
                     <CardActions>
                         <Button size="small" color="primary" className='fav-btn'>
                             Add To Favourites
