@@ -45,12 +45,10 @@ const useStyles = makeStyles({
         right: '12.5%'
     },
     backBtn: {
-        width: '2%',
-        height: '1%',
         position: 'absolute',
         left: '75%',
         background: 'darkgoldenrod',
-        width: '5%',
+        width: '9%',
         height: '5%',
         color: 'aliceblue',
         fontSize: '3em',
@@ -104,7 +102,7 @@ const MovieDetails = () => {
             </div>
             <NavLink to="/">
                 <Button className={classes.backBtn}>
-                    Back
+                    Back To Home
                 </Button>
             </NavLink>
         </div>

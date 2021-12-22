@@ -1,5 +1,4 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { loadMoviesAsync } from '../redux/reducers/thunks';
@@ -7,17 +6,7 @@ import { loadMoviesAsync } from '../redux/reducers/thunks';
 const MoviesList = lazy(() => import('./MoviesList'));
 const MovieItem = lazy(() => import('./MovieItem'));
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 220,
-    display: 'inline-block',
-    margin: '8px 10px 8px 10px'
-  },
-});
-
 const SearchBox = () => {
-
-    const classes = useStyles();  
 
     const [films, setFilms] = useState([])
 
